@@ -9,8 +9,8 @@ const vercelApi = (pathname: string) =>
     }
   })
 
-async function getProjectName (projectId: string) {
-  return vercelApi(`v9/projects/${projectId}`)
+async function getProjectName (projectId: string, teamId: string) {
+  return vercelApi(`v9/projects/${projectId}?teamId=${teamId}`)
     .then(res => res.json())
     .then((payload: any) => payload.name)
 }
@@ -18,7 +18,7 @@ async function getProjectName (projectId: string) {
 const getOrganizationName = async (teamId: string) =>
   vercelApi(`v2/teams/${teamId}`)
     .then(res => res.json())
-    .then((payload: any) => payload.name)
+    .then((payload: any) => payload.slug)
 
 export const getLatestDeployment = async () => {
   const { projectId } = await readProjectFile()
@@ -54,7 +54,7 @@ async function readProjectFile (): Promise<{
 async function fromPath (): Promise<{ org: string; project: string }> {
   const { projectId, teamId } = await readProjectFile()
   const org = await getOrganizationName(teamId)
-  const project = await getProjectName(projectId)
+  const project = await getProjectName(projectId, teamId)
   return { org, project }
 }
 
