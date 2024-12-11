@@ -1,0 +1,60 @@
+{
+  "name": "vercel-open",
+  "version": "1.0.0",
+  "preferGlobal": true,
+  "type": "module",
+  "bin": {
+    "vercel-open": "bin/index.js"
+  },
+  "scripts": {
+    "build": "tsup --format esm bin/index.ts -d bin/",
+    "test": "vitest",
+    "contributors": "(npx git-authors-cli && npx finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
+    "postrelease": "npm run release:tags && npm run release:github && (ci-publish || npm publish --access=public)",
+    "release:github": "github-generate-release",
+    "release:tags": "git push --follow-tags origin HEAD:master",
+    "release": "standard-version -a"
+  },
+  "author": "Kiko Beats",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@ksmithut/prettier-standard": "latest",
+    "ci-publish": "latest",
+    "finepack": "latest",
+    "git-authors-cli": "latest",
+    "github-generate-release": "latest",
+    "nano-staged": "latest",
+    "simple-git-hooks": "latest",
+    "ts-standard": "latest",
+    "standard-version": "latest"
+  },
+  "dependencies": {
+    "arg": "~5.0.2",
+    "got": "11",
+    "mri": "~1.2.0",
+    "node-fetch": "2",
+    "open": "~10.1.0",
+    "picocolors": "~1.1.1",
+    "typescript": "~5.7.2"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "nano-staged": {
+    "*.js": [
+      "prettier-standard",
+      "ts-standard --fix"
+    ],
+    "package.json": [
+      "finepack"
+    ]
+  },
+  "simple-git-hooks": {
+    "commit-msg": "npx commitlint --edit",
+    "pre-commit": "npx nano-staged"
+  }
+}
