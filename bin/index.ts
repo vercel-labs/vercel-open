@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import openBrowser from 'open'
 import mri from 'mri'
 import pc from 'picocolors'
