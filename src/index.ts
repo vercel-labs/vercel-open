@@ -9,11 +9,10 @@ const vercelApi = (pathname: string) =>
     }
   })
 
-async function getProjectName (projectId: string, teamId: string) {
-  return vercelApi(`v9/projects/${projectId}?teamId=${teamId}`)
+const getProjectName = async (projectId: string, teamId: string) =>
+  vercelApi(`v9/projects/${projectId}?teamId=${teamId}`)
     .then(res => res.json())
     .then((payload: any) => payload.name)
-}
 
 const getOrganizationName = async (teamId: string) =>
   vercelApi(`v2/teams/${teamId}`)
@@ -58,11 +57,13 @@ async function fromPath (): Promise<{ org: string; project: string }> {
   return { org, project }
 }
 
-export async function getSlugAndSection ({
-  args
-}: {
-  args: string[]
-} = { args: [] }): Promise<{
+export async function getSlugAndSection (
+  {
+    args
+  }: {
+    args: string[]
+  } = { args: [] }
+): Promise<{
   org: string
   project: string
   section: string
