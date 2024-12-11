@@ -34,7 +34,7 @@
     "arg": "~5.0.2",
     "got": "11",
     "mri": "~1.2.0",
-    "node-fetch": "2",
+    "node-fetch": "3",
     "open": "~10.1.0",
     "picocolors": "~1.1.1",
     "typescript": "~5.7.2"
