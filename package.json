@@ -35,6 +35,8 @@
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@ksmithut/prettier-standard": "latest",
+    "@types/node": "latest",
+    "@vercel/style-guide": "6",
     "c8": "latest",
     "ci-publish": "latest",
     "finepack": "latest",
@@ -43,7 +45,6 @@
     "nano-staged": "latest",
     "simple-git-hooks": "latest",
     "standard": "latest",
-    "standard-markdown": "latest",
     "standard-version": "latest",
     "tsup": "latest",
     "vitest": "latest"
@@ -70,11 +71,7 @@
   },
   "nano-staged": {
     "*.js": [
-      "prettier-standard",
-      "standard --fix"
-    ],
-    "*.md": [
-      "standard-markdown"
+      "prettier-standard"
     ],
     "package.json": [
       "finepack"

@@ -2,35 +2,36 @@ import { readFile } from 'fs/promises'
 import { existsSync } from 'fs'
 import path from 'path'
 
-const vercelApi = pathname =>
+const vercelApi = (pathname: string) =>
   fetch(`${process.env.VERCEL_API}/${pathname}`, {
     headers: {
       'Accept-Encoding': 'identity'
     }
   })
 
-const getProjectName = async (projectId: string) =>
-  vercelApi(`v9/projects/${projectId}`)
+async function getProjectName (projectId: string) {
+  return vercelApi(`v9/projects/${projectId}`)
     .then(res => res.json())
-    .then(payload => payload.name)
+    .then((payload: any) => payload.name)
+}
 
 const getOrganizationName = async (teamId: string) =>
   vercelApi(`v2/teams/${teamId}`)
     .then(res => res.json())
-    .then(payload => payload.name)
+    .then((payload: any) => payload.name)
 
 export const getLatestDeployment = async () => {
   const { projectId } = await readProjectFile()
   return vercelApi(`v9/projects/${projectId}`)
     .then(res => res.json())
-    .then(payload => payload.latestDeployments[0].id.replace('dpl_', ''))
+    .then((payload: any) => payload.latestDeployments[0].id.replace('dpl_', ''))
 }
 
 export const getProductionDeployment = async () => {
   const { projectId } = await readProjectFile()
   return vercelApi(`v9/projects/${projectId}`)
     .then(res => res.json())
-    .then(payload => payload.targets.production.id.replace('dpl_', ''))
+    .then((payload: any) => payload.targets.production.id.replace('dpl_', ''))
 }
 
 async function readProjectFile (): Promise<{
@@ -52,20 +53,16 @@ async function readProjectFile (): Promise<{
 
 async function fromPath (): Promise<{ org: string; project: string }> {
   const { projectId, teamId } = await readProjectFile()
-  const [org, project] = await Promise.all([
-    getOrganizationName(teamId),
-    getProjectName(projectId)
-  ])
-
+  const org = await getOrganizationName(teamId)
+  const project = await getProjectName(projectId)
   return { org, project }
 }
 
 export async function getSlugAndSection ({
-  args = []
+  args
 }: {
-  args?: string[]
-  cwd?: string
-} = {}): Promise<{
+  args: string[]
+} = { args: [] }): Promise<{
   org: string
   project: string
   section: string
@@ -75,13 +72,13 @@ export async function getSlugAndSection ({
   }
 
   if (args.length === 1) {
-    if (!args[0].includes('/')) {
+    if (args[0] && !args[0].includes('/')) {
       return {
         ...(await fromPath()),
         section: args[0]
       }
     } else {
-      const [org, project] = args[0].split('/')
+      const [org = '', project = ''] = (args[0] || '').split('/')
       return {
         org,
         project,
@@ -91,12 +88,12 @@ export async function getSlugAndSection ({
   }
 
   if (args.length === 2) {
-    const [org, project] = args[0].split('/')
+    const [org = '', project = ''] = (args[0] || '').split('/')
 
     return {
       org,
       project,
-      section: args[1]
+      section: args[1] || ''
     }
   }
 
