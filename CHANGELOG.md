@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.4 (2024-12-11)
+
+
+### Bug Fixes
+
+* get team slug ([791f84f](https://github.com/vercel-labs/vercel-open/commit/791f84fa106ca3b29b5f0f695af391c3aa854794))
+
 ### 1.0.3 (2024-12-11)
 
 
