@@ -58,7 +58,7 @@
     "prepublishOnly": "npm run build",
     "release": "standard-version -a",
     "release:github": "github-generate-release",
-    "release:tags": "git push --follow-tags origin HEAD:master",
+    "release:tags": "git push --follow-tags origin HEAD:main",
     "test": "c8 vitest"
   },
   "preferGlobal": true,
