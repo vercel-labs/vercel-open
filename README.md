@@ -36,6 +36,6 @@ Also `vc open info` will print revelant information about your project:
 
 ## License
 
-**vercel-open** © [Vercel](https://vercel.com), released under the [MIT](https://github.com/microlink/microlink-function/blob/master/LICENSE.md) License.<br>
+**vercel-open** © [Vercel](https://vercel.com), released under the [MIT](https://github.com/vercel-labs/vercel-open/blob/master/LICENSE.md) License.<br>
 
 > [vercel.com](https://vercel.com) · GitHub [vercel](https://github.com/vercel) · X [@vercel](https://x.com/vercel)
