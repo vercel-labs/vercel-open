@@ -8,7 +8,7 @@ import {
   getSlugAndSection,
   getLatestDeployment,
   getProductionDeployment
-} from '../src'
+} from '../src/index.js'
 
 async function main () {
   const { _: args, ...flags } = mri(process.argv.slice(2))
