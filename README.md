@@ -1,6 +1,6 @@
 # vercel-open
 
-The `vercel-open` command is an extension for Vercel CLI
+The `vercel-open` custom command extension for the Vercel CLI
 
 ## Installation
 
@@ -10,7 +10,7 @@ npm install -g vercel-open
 
 ## Usage
 
-Assuming your terminal is pointing in a local vercel project:
+**Automatic** - Requires that your working directory is a linked Vercel project:
 
 ```
 vc open # open the vercel dahboard for the current project
@@ -18,13 +18,13 @@ vc open logs # open logs of the project
 vc open logs --timeline=maximum # any query parameter is supported
 ```
 
-Additionally, you can specify the project open:
+**Custom** - Providing a `$team/$project` slug that will be opened:
 
 ```
 vc open vercel/v0 logs # will open `https://vercel.com/vercel/v0/logs` in the browser
 ```
 
-Also `vc open info` will print revelant information about your project:
+Also `vc open info` will print relevant information about your project:
 
 ```
 > vc open info
