@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "arg": "~5.0.2",
+    "find-cache-dir": "~5.0.0",
     "mri": "~1.2.0",
     "open": "~10.1.0",
     "picocolors": "~1.1.1",

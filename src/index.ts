@@ -2,6 +2,10 @@ import { readFile } from 'fs/promises'
 import { existsSync } from 'fs'
 import path from 'path'
 
+import { createCache } from './cache.js'
+
+const cache = createCache()
+
 const vercelApi = (pathname: string) =>
   fetch(`${process.env.VERCEL_API}/${pathname}`, {
     headers: {
@@ -51,9 +55,15 @@ async function readProjectFile (): Promise<{
 }
 
 async function fromPath (): Promise<{ org: string; project: string }> {
+  const cached = await cache.read()
+  if (cached.org && cached.project) return cached
+
   const { projectId, teamId } = await readProjectFile()
   const org = await getOrganizationName(teamId)
   const project = await getProjectName(projectId, teamId)
+
+  await cache.write({ org, project })
+
   return { org, project }
 }
 
