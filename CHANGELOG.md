@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.1.0 (2024-12-12)
+
+
+### Features
+
+* add cache ([e59da60](https://github.com/vercel-labs/vercel-open/commit/e59da6059afaf46d3f1fef1b3108cb917949a2a8))
+
 ### 1.0.5 (2024-12-11)
 
 ### 1.0.4 (2024-12-11)
