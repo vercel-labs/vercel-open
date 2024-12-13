@@ -1,6 +1,6 @@
 # vercel-open
 
-![](demo.mp4)
+https://github.com/user-attachments/assets/c27b4e68-87d6-44b4-b113-0bbaf186879c
 
 The `vc open` custom command extension for the Vercel CLI.
 
