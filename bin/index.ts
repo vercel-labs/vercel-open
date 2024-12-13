@@ -4,6 +4,8 @@ import openBrowser from 'open'
 import pc from 'picocolors'
 import mri from 'mri'
 
+const { white, black } = pc
+
 import {
   vercelUrl,
   getSlugAndSection,
@@ -16,6 +18,22 @@ async function main () {
   const { org, project, section } = await getSlugAndSection({ args })
 
   switch (section) {
+    case 'help': {
+      console.log(
+        [
+          '',
+          '  Usage:',
+          `    ${white('vc open')} [${white('current')}|${white('latest')}] [${white('--visit')}]`,
+          '',
+          '  Jump to any section:',
+          `    ${white('vc open')} [${white('current')}|${white('latest')}] <${white('logs')}|${white('settings')}|${white('etc')}> [${white('--query-parameter')}]`
+        ]
+          .map(line => black(line))
+          .join('\n')
+      )
+      break
+    }
+
     case 'latest': {
       const { id, url: deploymentUrl } = await getLatestDeployment()
       const url = visit ? deploymentUrl : vercelUrl({ org, project, section: id, flags })
@@ -28,17 +46,17 @@ async function main () {
     }
     case 'info': {
       const { id: latestId } = await getLatestDeployment()
-      const { id: currentId} = await getProductionDeployment()
+      const { id: currentId } = await getProductionDeployment()
 
       console.log(
-        pc.black(
+        black(
           [
             '',
-            `${pc.white('▲ overview')}              https://vercel.com/${org}/${project}/`,
-            `${pc.white(
+            `${white('▲ overview')}              https://vercel.com/${org}/${project}/`,
+            `${white(
               '▲ current (production)'
             )}  https://vercel.com/${org}/${project}/${currentId}/`,
-            `${pc.white(
+            `${white(
               '▲ latest  (preview)'
             )}     https://vercel.com/${org}/${project}/${latestId}/`
           ].join('\n')
