@@ -13,10 +13,11 @@ const vercelApi = (pathname: string) =>
     }
   })
 
+const getProject = async (projectId: string, teamId: string) =>
+  vercelApi(`v9/projects/${projectId}?teamId=${teamId}`).then(res => res.json())
+
 const getProjectName = async (projectId: string, teamId: string) =>
-  vercelApi(`v9/projects/${projectId}?teamId=${teamId}`)
-    .then(res => res.json())
-    .then((payload: any) => payload.name)
+  getProject(projectId, teamId).then((payload: any) => payload.name)
 
 const getOrganizationName = async (teamId: string) =>
   vercelApi(`v2/teams/${teamId}`)
@@ -24,17 +25,25 @@ const getOrganizationName = async (teamId: string) =>
     .then((payload: any) => payload.slug)
 
 export const getLatestDeployment = async () => {
-  const { projectId } = await readProjectFile()
-  return vercelApi(`v9/projects/${projectId}`)
-    .then(res => res.json())
-    .then((payload: any) => payload.latestDeployments[0].id.replace('dpl_', ''))
+  const { projectId, teamId } = await readProjectFile()
+  return getProject(projectId, teamId).then((payload: any) => {
+    return {
+      id: payload.latestDeployments[0].id.replace('dpl_', ''),
+      url: `https://${payload.latestDeployments[0].url}`
+    }
+  })
 }
 
 export const getProductionDeployment = async () => {
-  const { projectId } = await readProjectFile()
-  return vercelApi(`v9/projects/${projectId}`)
+  const { projectId, teamId } = await readProjectFile()
+  return vercelApi(`v9/projects/${projectId}?teamId=${teamId}`)
     .then(res => res.json())
-    .then((payload: any) => payload.targets.production.id.replace('dpl_', ''))
+    .then((payload: any) => {
+      return {
+        id: payload.targets.production.id.replace('dpl_', ''),
+        url: `https://${payload.targets.production.alias[0]}`
+      }
+    })
 }
 
 async function readProjectFile (): Promise<{
@@ -99,14 +108,42 @@ export async function getSlugAndSection (
   }
 
   if (args.length === 2) {
-    const [org = '', project = ''] = (args[0] || '').split('/')
+    if (args[0] && ['current', 'latest'].includes(args[0])) {
+      const { id } = await (args[0] === 'current' ? getProductionDeployment() : getLatestDeployment())
+      const { org, project } = await fromPath()
 
-    return {
-      org,
-      project,
-      section: args[1] || ''
+      return {
+        ...(await fromPath()),
+        org,
+        project: `${project}/${id}`,
+        section: args[1] || ''
+      }
+    } else {
+      const [org = '', project = ''] = (args[0] || '').split('/')
+
+      return {
+        org,
+        project,
+        section: args[1] || ''
+      }
     }
   }
 
   throw new Error('Invalid arguments')
+}
+
+export const vercelUrl = ({
+  org,
+  project,
+  section,
+  flags
+}: {
+  org: string
+  project: string
+  section: string
+  flags: Record<string, any>
+}): string => {
+  const url = new URL(`${org}/${project}/${section}`, 'https://vercel.com/')
+  url.search = new URLSearchParams(flags).toString()
+  return url.toString()
 }

@@ -29,9 +29,9 @@ Also `vc open info` will print relevant information about your project:
 ```
 > vc open info
 
-▲ overview            https://vercel.com/vercel/v0/
-▲ latest (production) https://vercel.com/vercel/v0/2fVgMqXL3km1nAwqg7aAR58gtt1A/
-▲ latest (preview)    https://vercel.com/vercel/v0/UhnKLjQb7SDaLFT2GBM2eVwLUsdE/
+▲ overview              https://vercel.com/vercel-labs/vercel-open/
+▲ current (production)  https://vercel.com/vercel-labs/vercel-open/AtQTsruE87Lu6Nz3fhCrFyxV9t3T/
+▲ latest  (preview)     https://vercel.com/vercel-labs/vercel-open/3AaqTjcDGqfEW6FjbywYKNaQfDW9/
 ```
 
 ## License
