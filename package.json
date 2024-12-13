@@ -61,7 +61,6 @@
   "scripts": {
     "build": "tsup --format esm bin/index.ts -d bin/",
     "contributors": "(npx git-authors-cli && npx finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
-    "install": "node bin/welcome.mjs",
     "postrelease": "npm run release:tags && npm run release:github && (ci-publish || npm publish --access=public)",
     "prepublishOnly": "npm run build",
     "release": "standard-version -a",
