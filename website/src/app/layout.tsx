@@ -21,7 +21,7 @@ export default function RootLayout ({ children }: { children: React.ReactNode })
           target='_blank'
           rel='noopener noreferrer'
         >
-          <ThemeProvider attribute='class' forcedTheme='dark' disableTransitionOnChange>
+          <ThemeProvider attribute='class' disableTransitionOnChange>
             {/* <ModeToggle /> */}
             {children}
           </ThemeProvider>
