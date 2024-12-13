@@ -22,10 +22,13 @@ async function main () {
       console.log(
         [
           '',
-          '  Usage:',
+          '  Resume information:',
+          `    ${white('vc open info')}`,
+          '',
+          '  Opening in the browser:',
           `    ${white('vc open')} [${white('current')}|${white('latest')}] [${white('--visit')}]`,
           '',
-          '  Jump to any section:',
+          '  Jumping to a section:',
           `    ${white('vc open')} [${white('current')}|${white('latest')}] <${white('logs')}|${white('settings')}|${white('etc')}> [${white('--query-parameter')}]`
         ]
           .map(line => black(line))
