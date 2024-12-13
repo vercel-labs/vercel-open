@@ -10,9 +10,9 @@ export default function Home () {
     <>
       <Marquee direction='left' position='top' />
       <main className='flex min-h-screen items-center justify-center bg-background text-foreground p-4 overflow-hidden relative border-8 border-foreground cursor-none'>
-        <Snowfall snowflakeCount={50} style={{ position: 'fixed' }} />
         <Heading />
         <Cursor />
+        <Snowfall snowflakeCount={50} />
       </main>
       <Marquee />
     </>

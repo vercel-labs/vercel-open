@@ -25,7 +25,7 @@ export function Cursor () {
         height: 0,
         borderLeft: '10px solid transparent',
         borderRight: '10px solid transparent',
-        borderBottom: '20px solid white',
+        borderBottom: '20px solid',
         transform: 'translate(-50%, -50%) rotate(0)'
       }}
     />

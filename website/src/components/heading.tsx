@@ -26,7 +26,7 @@ export function Heading () {
 
   return (
     <h1
-      className='text-center font-mono whitespace-nowrap tracking-tighter select-none'
+      className='z-10 text-center font-mono whitespace-nowrap tracking-tighter select-none'
       style={{
         fontSize: `${fontSize}px`,
         transform: `scaleY(${stretch}%)`,
