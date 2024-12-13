@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import openBrowser from 'open'
-import mri from 'mri'
 import pc from 'picocolors'
+import mri from 'mri'
 
 import {
   vercelUrl,
@@ -18,6 +18,11 @@ async function main () {
   switch (section) {
     case 'latest': {
       const { id, url: deploymentUrl } = await getLatestDeployment()
+      const url = visit ? deploymentUrl : vercelUrl({ org, project, section: id, flags })
+      return openBrowser(url)
+    }
+    case 'current': {
+      const { id, url: deploymentUrl } = await getProductionDeployment()
       const url = visit ? deploymentUrl : vercelUrl({ org, project, section: id, flags })
       return openBrowser(url)
     }
