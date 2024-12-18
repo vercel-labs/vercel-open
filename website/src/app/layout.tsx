@@ -7,14 +7,16 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'npm install -g vercel-open',
-  description: 'The vercel-open custom command extension for the Vercel CLI'
+  description: 'The vercel-open custom command extension for the Vercel CLI',
+  other: {
+    ['twitter:label1']: 'Installation',
+    ['twitter:data1']: 'npm install -g vercel-open'
+  }
 }
 
 export default function RootLayout ({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <meta name='twitter:label1' content='installation' />
-      <meta name='twitter:data1' content='npm install -g vercel-open'></meta>
       <body className='bg-black'>
         <a
           href='https://github.com/vercel-labs/vercel-open'
