@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.9 (2024-12-18)
+
+
+### Bug Fixes
+
+* **docs:** metadata ([ca8e48e](https://github.com/vercel-labs/vercel-open/commit/ca8e48ec99ed51572052a21000d09e15a6e3ceeb))
+
 ### 1.1.8 (2024-12-18)
 
 ### 1.1.7 (2024-12-13)
