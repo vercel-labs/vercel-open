@@ -3,9 +3,13 @@ import findCacheDirectory from 'find-cache-dir'
 import { existsSync } from 'fs'
 import path from 'path'
 
+import { ErrorLinkProject } from './error.js'
+
 export const createCache = () => {
   const cacheDir = findCacheDirectory({ name: 'vercel-open' })
-  const cachePath = path.resolve(cacheDir!, 'cache.json')
+  if (cacheDir === undefined) throw ErrorLinkProject()
+
+  const cachePath = path.resolve(cacheDir, 'cache.json')
 
   const cacheFilePromise = (async () => {
     try {

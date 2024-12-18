@@ -2,6 +2,7 @@ import { readFile } from 'fs/promises'
 import { existsSync } from 'fs'
 import path from 'path'
 
+import { ErrorLinkProject } from './error.js'
 import { createCache } from './cache.js'
 
 const cache = createCache()
@@ -51,13 +52,7 @@ async function readProjectFile (): Promise<{
   teamId: string
 }> {
   const filepath = path.resolve(process.cwd(), '.vercel/project.json')
-
-  if (!existsSync(filepath)) {
-    const error: NodeJS.ErrnoException = new Error('Link project error')
-    error.code = 'ERR_LINK_PROJECT'
-    throw error
-  }
-
+  if (!existsSync(filepath)) throw ErrorLinkProject()
   const fileContent = await readFile(filepath, 'utf-8')
   const { projectId, orgId: teamId } = JSON.parse(fileContent)
   return { projectId, teamId }
