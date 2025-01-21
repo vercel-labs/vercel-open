@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.10 (2025-01-21)
+
+
+### Bug Fixes
+
+* don't fail is cache is empty ([ad58967](https://github.com/vercel-labs/vercel-open/commit/ad58967b7f00150cd7e44e7be250ef46c5882341))
+
 ### 1.1.9 (2024-12-18)
 
 
