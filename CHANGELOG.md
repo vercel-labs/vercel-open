@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.11 (2025-02-13)
+
+
+### Bug Fixes
+
+* setup vercel api endpoint ([e5ffa3e](https://github.com/vercel-labs/vercel-open/commit/e5ffa3ec7c81f1d8058dc89ae2d24013be251338))
+
 ### 1.1.10 (2025-01-21)
 
 
