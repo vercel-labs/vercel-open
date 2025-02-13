@@ -5,10 +5,12 @@ import path from 'path'
 import { ErrorLinkProject } from './error.js'
 import { createCache } from './cache.js'
 
+const { VERCEL_API = 'https://api.vercel.com/' } = process.env
+
 const cache = createCache()
 
 const vercelApi = (pathname: string) =>
-  fetch(`${process.env.VERCEL_API}/${pathname}`, {
+  fetch(new URL(pathname, VERCEL_API), {
     headers: {
       'Accept-Encoding': 'identity'
     }
@@ -104,7 +106,9 @@ export async function getSlugAndSection (
 
   if (args.length === 2) {
     if (args[0] && ['current', 'latest'].includes(args[0])) {
-      const { id } = await (args[0] === 'current' ? getProductionDeployment() : getLatestDeployment())
+      const { id } = await (args[0] === 'current'
+        ? getProductionDeployment()
+        : getLatestDeployment())
       const { org, project } = await fromPath()
 
       return {

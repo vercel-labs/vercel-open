@@ -4,14 +4,14 @@ import openBrowser from 'open'
 import pc from 'picocolors'
 import mri from 'mri'
 
-const { white, black } = pc
-
 import {
   vercelUrl,
   getSlugAndSection,
   getLatestDeployment,
   getProductionDeployment
 } from '../src/index.js'
+
+const { white, black } = pc
 
 async function main () {
   const { _: args, visit, ...flags } = mri(process.argv.slice(2))
