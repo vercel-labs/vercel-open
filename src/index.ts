@@ -62,7 +62,7 @@ async function readProjectFile (): Promise<{
 
 async function fromPath (): Promise<{ org: string; project: string }> {
   const cached = await cache.read()
-  if (cached.org && cached.project) return cached
+  if (cached && cached.org && cached.project) return cached
 
   const { projectId, teamId } = await readProjectFile()
   const org = await getOrganizationName(teamId)
