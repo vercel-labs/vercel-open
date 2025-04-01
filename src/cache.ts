@@ -4,7 +4,7 @@ import { existsSync } from 'fs'
 import path from 'path'
 
 export const createCache = () => {
-  const cacheDir = findCacheDirectory({ name: 'vercel-open' })
+  const cacheDir = findCacheDirectory({ name: 'vercel-open', create: true })
 
   if (cacheDir === undefined) {
     return {
