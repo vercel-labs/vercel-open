@@ -1,5 +1,5 @@
 import { mkdir, writeFile, readFile } from 'fs/promises'
-import findCacheDirectory from 'find-cache-dir'
+import findCacheDirectory from 'find-cache-directory'
 import { existsSync } from 'fs'
 import path from 'path'
 
