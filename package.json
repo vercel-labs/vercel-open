@@ -2,7 +2,7 @@
   "name": "vercel-open",
   "description": "opens a Vercel project in your browser from your terminal",
   "homepage": "https://github.com/vercel-labs/vercel-open#readme",
-  "version": "1.1.18",
+  "version": "1.1.19",
   "bin": {
     "vercel-open": "bin/index.js"
   },
