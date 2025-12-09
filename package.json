@@ -36,7 +36,7 @@
     "arg": "~5.0.2",
     "find-cache-directory": "~6.0.0",
     "mri": "~1.2.0",
-    "open": "~10.2.0",
+    "open": "~11.0.0",
     "picocolors": "~1.1.1",
     "typescript": "~5.9.2"
   },
